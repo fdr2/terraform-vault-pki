@@ -5,6 +5,7 @@ Configure Vault's PKI Engine to distribute Intermediate Certificates from multip
 Issues a PKI Certificate
 
 > This module aligns with [Generate mTLS Certificates for Consul with Vault](https://developer.hashicorp.com/consul/tutorials/vault-secure/vault-pki-consul-secure-tls)
+> and [Build Your Own Certificate Authority (CA)](https://developer.hashicorp.com/consul/tutorials/vault-secure/pki-engine)
 
 ## Usage
 Add the module and assign a PKI hierarchy.
