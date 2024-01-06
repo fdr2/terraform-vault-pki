@@ -15,9 +15,12 @@ variable "pki_map" {
       description : "Consul Root CA"
       default_lease_ttl_seconds : 1209600 # 2 weeks
       max_lease_ttl_seconds : 2419200     # 4 weeks
-      #issuing_certificates = [
-      #  "https://vault.service.consul:8200/v1/pki/consul_root/ca"
-      #]
+      issuing_certificates = [
+        "https://vault.service.consul:8200/v1/pki/consul_root/ca"
+      ]
+      crl_distribution_points = [
+        "https://vault.service.consul:8200/v1/pki/consul_root/crl"
+      ]
       intermediates : {
         consul_inter : {
           common_name : "Consul Intermediate CA"
@@ -59,9 +62,12 @@ variable "pki_map" {
       description : "Nomad Root CA"
       default_lease_ttl_seconds : 1209600 # 2 weeks
       max_lease_ttl_seconds : 2419200     # 4 weeks
-      #issuing_certificates = [
-      #  "https://vault.service.consul:8200/v1/pki/nomad_root/ca"
-      #]
+      issuing_certificates = [
+        "https://vault.service.consul:8200/v1/pki/nomad_root/ca"
+      ]
+      crl_distribution_points = [
+        "https://vault.service.consul:8200/v1/pki/nomad_root/crl"
+      ]
       intermediates : {
         nomad_inter : {
           common_name : "Nomad Intermediate CA"
@@ -101,9 +107,12 @@ variable "pki_map" {
       description : "Vault Root CA"
       default_lease_ttl_seconds : 1209600 # 2 weeks
       max_lease_ttl_seconds : 2419200     # 4 weeks
-      #issuing_certificates = [
-      #  "https://vault.service.consul:8200/v1/pki/vault_root/ca"
-      #]
+      issuing_certificates = [
+        "https://vault.service.consul:8200/v1/pki/vault_root/ca"
+      ]
+      crl_distribution_points = [
+        "https://vault.service.consul:8200/v1/pki/vault_root/crl"
+      ]
       intermediates : {
         vault_inter : {
           common_name : "Vault Intermediate CA"
