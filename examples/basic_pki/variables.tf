@@ -52,6 +52,7 @@ variable "pki_map" {
               allow_subdomains : true
               allow_glob_domains : true
               allow_ip_sans : true
+              issuer_ref : default
             }
           }
         }
@@ -97,6 +98,7 @@ variable "pki_map" {
               allow_subdomains : true
               allow_glob_domains : true
               allow_ip_sans : true
+              issuer_ref : default
             }
           }
         }
@@ -143,6 +145,7 @@ variable "pki_map" {
               allow_subdomains : true
               allow_glob_domains : true
               allow_ip_sans : true
+              issuer_ref : default
             }
           }
         }
