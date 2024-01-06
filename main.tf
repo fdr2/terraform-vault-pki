@@ -17,6 +17,7 @@ resource "vault_pki_secret_backend_config_urls" "root" {
 
 resource "vault_pki_secret_backend_root_cert" "root" {
   for_each     = var.pki_map
+  id           = each.key
   backend      = vault_mount.root[each.key].path
   type         = "internal"
   ttl          = try(each.value["ttl"], null)
