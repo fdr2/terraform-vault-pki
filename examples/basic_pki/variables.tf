@@ -52,7 +52,7 @@ variable "pki_map" {
               allow_subdomains : true
               allow_glob_domains : true
               allow_ip_sans : true
-              issuer_ref : "default"
+              issuer_ref : "consul_root"
             }
           }
         }
@@ -98,7 +98,7 @@ variable "pki_map" {
               allow_subdomains : true
               allow_glob_domains : true
               allow_ip_sans : true
-              issuer_ref : "default"
+              issuer_ref : "nomad_root"
             }
           }
         }
@@ -145,7 +145,7 @@ variable "pki_map" {
               allow_subdomains : true
               allow_glob_domains : true
               allow_ip_sans : true
-              issuer_ref : "default"
+              issuer_ref : "vault_root"
             }
           }
         }
