@@ -9,9 +9,10 @@ resource "vault_mount" "root" {
 }
 
 resource "vault_pki_secret_backend_config_urls" "root" {
-  for_each             = var.pki_map
-  backend              = vault_mount.root[each.key].path
-  issuing_certificates = try(each.value["issuing_certificates"], null)
+  for_each                = var.pki_map
+  backend                 = vault_mount.root[each.key].path
+  issuing_certificates    = try(each.value["issuing_certificates"], null)
+  crl_distribution_points = try(each.value["crl_distribution_points"], null)
 }
 
 resource "vault_pki_secret_backend_root_cert" "root" {
