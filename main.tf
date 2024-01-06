@@ -28,6 +28,12 @@ resource "vault_pki_secret_backend_root_cert" "root" {
   province     = try(each.value["province"], null)
 }
 
+resource "vault_pki_secret_backend_issuer" "root" {
+  backend     = vault_pki_secret_backend_root_cert.root.backend
+  issuer_ref  = vault_pki_secret_backend_root_cert.root.issuer_id
+  issuer_name = "default"
+}
+
 ## PKI Intermediates
 locals {
   inter_list = merge([for rk, rv in var.pki_map : { for ik, iv in rv.intermediates : ik => merge(iv, { root : rk }) }]...)
