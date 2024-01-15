@@ -83,20 +83,6 @@ resource "vault_pki_secret_backend_intermediate_set_signed" "intermediate" {
   certificate = vault_pki_secret_backend_root_sign_intermediate.intermediate[each.key].certificate
 }
 
-resource "vault_pki_secret_backend_issuer" "intermediate" {
-  for_each    = local.inter_list
-  backend     = vault_pki_secret_backend_root_sign_intermediate.intermediate[each.key].backend
-  issuer_ref  = vault_pki_secret_backend_intermediate_set_signed.intermediate[each.key].id
-  issuer_name = each.key
-}
-
-resource "vault_pki_secret_backend_config_issuers" "config" {
-  for_each                      = local.inter_list
-  backend                       = vault_mount.intermediate[each.key].path
-  default                       = vault_pki_secret_backend_issuer.intermediate[each.key].issuer_id
-  default_follows_latest_issuer = true
-}
-
 ## PKI Roles
 locals {
   roles_list = merge(flatten([for rk, rv in var.pki_map : [for ik, iv in rv.intermediates : { for ok, ov in iv.roles : ok => merge(ov, { inter : ik }) }]])...)
