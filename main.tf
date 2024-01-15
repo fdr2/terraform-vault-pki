@@ -86,8 +86,15 @@ resource "vault_pki_secret_backend_intermediate_set_signed" "intermediate" {
 resource "vault_pki_secret_backend_issuer" "intermediate" {
   for_each    = local.inter_list
   backend     = vault_pki_secret_backend_root_sign_intermediate.intermediate[each.key].backend
-  issuer_ref  = vault_pki_secret_backend_root_sign_intermediate.intermediate[each.key].issuer_ref
+  issuer_ref  = vault_pki_secret_backend_root_sign_intermediate.intermediate[each.key].id
   issuer_name = each.key
+}
+
+resource "vault_pki_secret_backend_config_issuers" "config" {
+  for_each                      = local.inter_list
+  backend                       = vault_mount.intermediate[each.key].path
+  default                       = vault_pki_secret_backend_issuer.intermediate[each.key].issuer_id
+  default_follows_latest_issuer = true
 }
 
 ## PKI Roles
