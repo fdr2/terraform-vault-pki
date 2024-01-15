@@ -109,5 +109,4 @@ resource "vault_pki_secret_backend_role" "intermediate" {
   allow_ip_sans      = try(each.value["allow_ip_sans"], null)
   allowed_uri_sans   = try(each.value["allowed_uri_sans"], null)
   allowed_other_sans = try(each.value["allowed_other_sans"], null)
-  issuer_ref         = vault_pki_secret_backend_issuer.intermediate[each.key].issuer_ref
 }
