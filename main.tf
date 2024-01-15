@@ -86,7 +86,7 @@ resource "vault_pki_secret_backend_intermediate_set_signed" "intermediate" {
 resource "vault_pki_secret_backend_issuer" "intermediate" {
   for_each    = local.inter_list
   backend     = vault_pki_secret_backend_root_sign_intermediate.intermediate[each.key].backend
-  issuer_ref  = vault_pki_secret_backend_intermediate_set_signed.intermediate.id
+  issuer_ref  = vault_pki_secret_backend_intermediate_set_signed.intermediate[each.key].id
   issuer_name = each.key
 }
 
